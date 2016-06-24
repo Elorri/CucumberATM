@@ -13,12 +13,14 @@ import cucumber.api.java.en.When;
 
 public class Steps {
 
+
+
     class Account {
 
-        private int balance;
+        private Money balance = new Money();
 
         public void deposit(int amount) {
-            balance += amount;
+            balance = balance.add(amount);
         }
 
         public int getBalance() {
@@ -26,9 +28,12 @@ public class Steps {
         }
     }
 
-    @Given("^I have deposited \\$(\\d+) in my account$")
-    public void iHaveDeposited$InMyAccount(int amount) throws Throwable {
+
+
+    @Given("^I have deposited \$(\\d+)\.(\\d+) in my account$")
+    public void iHaveDeposited$InMyAccount(int dollars, int cents) throws Throwable {
         Account myAccount = new Account();
+        Money amount = new Money(dollars, cents);
         myAccount.deposit(amount);
         Assert.assertEquals("Incorrect account balance -",
                 amount, myAccount.getBalance());
