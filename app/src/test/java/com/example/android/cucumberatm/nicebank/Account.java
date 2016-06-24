@@ -1,20 +1,18 @@
 package com.example.android.cucumberatm.nicebank;
 
-import com.example.android.cucumberatm.Steps;
-
 /**
  * Created by Elorri on 24/06/2016.
  */
 
-class Account {
+public class Account {
 
-    private Steps.Money balance;
+    private Money balance;
 
-    void deposit(Steps.Money amount) {
+    public void deposit(Money amount) {
         balance = balance.add(amount);
     }
 
-    Steps.Money getBalance() {
+    Money getBalance() {
         return balance;
     }
 }

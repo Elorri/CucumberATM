@@ -1,5 +1,6 @@
-package com.example.android.cucumberatm;
+package com.example.android.cucumberatm.steps;
 
+import com.example.android.cucumberatm.nicebank.Money;
 import com.example.android.cucumberatm.support.KnowsTheDomain;
 
 import org.junit.Assert;
@@ -7,21 +8,18 @@ import org.junit.Assert;
 import cucumber.api.Transform;
 import cucumber.api.Transformer;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 
 /**
- * Created by Elorri on 22/06/2016.
+ * Created by Elorri on 24/06/2016.
  */
 
-public class Steps {
+public class AccountSteps {
 
     private final KnowsTheDomain helper;
 
-
-
-
-
+    public AccountSteps() {
+        helper = new KnowsTheDomain();
+    }
 
     public class MoneyConverter extends Transformer<Money> {
 
@@ -34,32 +32,9 @@ public class Steps {
         }
     }
 
-
-
-
-
-
-
-
-    public Steps() {
-        helper = new KnowsTheDomain();
-    }
-
-
     @Given("^I have deposited (\\$\\d+\\.\\d+) in my account$")
-    public void iHaveDeposited$InMyAccount(@Transform(MoneyConverter.class) Money amount) throws Throwable {
+    public void iHaveDeposited$InMyAccount(@Transform(CashSlotSteps.MoneyConverter.class) Money amount) throws Throwable {
         helper.getMyAccount().deposit(amount);
         Assert.assertEquals("Incorrect account balance -", amount, helper.getMyAccount().getBalance());
-    }
-
-
-    @When("^I withdraw \\$(\\d+)$")
-    public void iWithdraw$(int dollars) throws Throwable {
-        helper.getTeller().withdrawFrom(helper.getMyAccount(), dollars);
-    }
-
-    @Then("^\\$(\\d+) should be dispensed$")
-    public void $ShouldBeDispensed(int dollars) throws Throwable {
-        Assert.assertEquals("Incorrect amount dispensed -", dollars, helper.getCashSlot().getContents());
     }
 }
