@@ -6,6 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cucumber.api.PendingException;
+import cucumber.api.Transform;
+import cucumber.api.Transformer;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -17,33 +19,45 @@ import cucumber.api.java.en.When;
 public class Steps {
 
 
-
     class Account {
 
         private Money balance = new Money();
 
-        public void deposit(int amount) {
+        void deposit(int amount) {
             balance = balance.add(amount);
         }
 
-        public int getBalance() {
+        int getBalance() {
             return balance;
         }
     }
 
-    public Money(String amount) {
-        Pattern pattern = Pattern.compile("^[^\\d]*([\\d]+)\\.([\\d][\\d])$");
-        Matcher matcher = pattern.matcher(amount);
-        matcher.find();
-        this.dollars = Integer.parseInt(matcher.group(1));
-        this.cents = Integer.parseInt(matcher.group(2));
+    class Money {
+
+        private final int dollars;
+        private final int cents;
+
+        Money(int dollars, int cents) {
+            this.dollars = dollars;
+            this.cents = cents;
+        }
+    }
+
+    public class MoneyConverter extends Transformer<Money> {
+
+        @Override
+        public Money transform(String amount) {
+            String[] numbers = amount.split("\\.");
+            int dollars = Integer.parseInt(numbers[0]);
+            int cents = Integer.parseInt(numbers[1]);
+            return new Money(dollars, cents);
+        }
     }
 
 
     @Given("^I have deposited \$(\\d+)\.(\\d+) in my account$")
-    public void iHaveDeposited$InMyAccount(int dollars, int cents) throws Throwable {
+    public void iHaveDeposited$InMyAccount(@Transform(MoneyConverter.class) Money amount) throws Throwable {
         Account myAccount = new Account();
-        Money amount = new Money(dollars, cents);
         myAccount.deposit(amount);
         Assert.assertEquals("Incorrect account balance -",
                 amount, myAccount.getBalance());
