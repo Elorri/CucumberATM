@@ -16,6 +16,8 @@ import cucumber.api.java.en.When;
 public class Steps {
 
 
+
+
     class Account {
 
         private Money balance;
@@ -56,6 +58,12 @@ public class Steps {
     }
 
 
+    class Teller {
+        public void withdrawFrom(Account account, int dollars) {
+        }
+    }
+
+
     @Given("^I have deposited (\\$\\d+\\.\\d+) in my account$")
     public void iHaveDeposited$InMyAccount(@Transform(MoneyConverter.class) Money amount) throws Throwable {
         Account myAccount = new Account();
@@ -64,10 +72,12 @@ public class Steps {
                 amount, myAccount.getBalance());
     }
 
-    @When("^I request \\$(\\d+)$")
-    public void iRequest$(int arg1) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
+
+    @When("^I withdraw \\$(\\d+)$")
+    public void iWithdraw$(int arg0) throws Throwable {
+        Teller teller = new Teller();
+        teller.withdrawFrom(myAccount, amount);
     }
 
     @Then("^\\$(\\d+) should be dispensed$")
