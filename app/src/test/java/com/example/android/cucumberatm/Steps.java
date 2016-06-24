@@ -2,9 +2,6 @@ package com.example.android.cucumberatm;
 
 import org.junit.Assert;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import cucumber.api.PendingException;
 import cucumber.api.Transform;
 import cucumber.api.Transformer;
@@ -21,13 +18,13 @@ public class Steps {
 
     class Account {
 
-        private Money balance = new Money();
+        private Money balance;
 
-        void deposit(int amount) {
+        void deposit(Money amount) {
             balance = balance.add(amount);
         }
 
-        int getBalance() {
+        Money getBalance() {
             return balance;
         }
     }
@@ -40,6 +37,10 @@ public class Steps {
         Money(int dollars, int cents) {
             this.dollars = dollars;
             this.cents = cents;
+        }
+
+        public Money add(Money amount) {
+            return null;
         }
     }
 
