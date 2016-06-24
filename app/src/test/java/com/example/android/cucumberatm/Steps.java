@@ -2,7 +2,6 @@ package com.example.android.cucumberatm;
 
 import org.junit.Assert;
 
-import cucumber.api.PendingException;
 import cucumber.api.Transform;
 import cucumber.api.Transformer;
 import cucumber.api.java.en.Given;
@@ -71,6 +70,8 @@ public class Steps {
     class KnowsTheDomain {
         private Account myAccount;
         private CashSlot cashSlot;
+        private Teller teller;
+
         public Account getMyAccount() {
             if (myAccount == null){
                 myAccount = new Account();
@@ -82,6 +83,24 @@ public class Steps {
                 cashSlot = new CashSlot();
             }
             return cashSlot;
+        }
+
+        public Teller getTeller() {
+            if (teller == null){
+                teller = new Teller(getCashSlot());
+            }
+            return teller;
+        }
+
+    }
+
+    class CashSlot {
+        private int contents;
+        public int getContents() {
+            return contents;
+        }
+        public void dispense(int dollars){
+            contents = dollars;
         }
     }
 
@@ -99,12 +118,11 @@ public class Steps {
 
     @When("^I withdraw \\$(\\d+)$")
     public void iWithdraw$(int dollars) throws Throwable {
-        Teller teller = new Teller();
-        teller.withdrawFrom(helper.getMyAccount(), dollars);
+        helper.getTeller().withdrawFrom(helper.getMyAccount(), dollars);
     }
 
     @Then("^\\$(\\d+) should be dispensed$")
     public void $ShouldBeDispensed(int dollars) throws Throwable {
-        Assert.assertEquals("Incorrect amount dispensed -", dollars, helper.getCashSlot().contents());
+        Assert.assertEquals("Incorrect amount dispensed -", dollars, helper.getCashSlot().getContents());
     }
 }
