@@ -1,5 +1,7 @@
 package com.example.android.cucumberatm;
 
+import android.accounts.Account;
+
 import org.junit.Assert;
 
 import cucumber.api.Transform;
@@ -17,33 +19,9 @@ public class Steps {
     private final KnowsTheDomain helper;
 
 
-    class Account {
 
-        private Money balance;
 
-        void deposit(Money amount) {
-            balance = balance.add(amount);
-        }
 
-        Money getBalance() {
-            return balance;
-        }
-    }
-
-    class Money {
-
-        private final int dollars;
-        private final int cents;
-
-        Money(int dollars, int cents) {
-            this.dollars = dollars;
-            this.cents = cents;
-        }
-
-        public Money add(Money amount) {
-            return null;
-        }
-    }
 
     public class MoneyConverter extends Transformer<Money> {
 
@@ -57,15 +35,7 @@ public class Steps {
     }
 
 
-    class Teller {
-        private CashSlot cashSlot;
-        public Teller(CashSlot cashSlot) {
-            this.cashSlot = cashSlot;
-        }
-        public void withdrawFrom(Account account, int dollars) {
-            cashSlot.dispense(dollars);
-        }
-    }
+
 
     class KnowsTheDomain {
         private Account myAccount;
@@ -94,15 +64,7 @@ public class Steps {
 
     }
 
-    class CashSlot {
-        private int contents;
-        public int getContents() {
-            return contents;
-        }
-        public void dispense(int dollars){
-            contents = dollars;
-        }
-    }
+
 
     public Steps() {
         helper = new KnowsTheDomain();
