@@ -17,8 +17,8 @@ public class AccountSteps {
 
     private final KnowsTheDomain helper;
 
-    public AccountSteps() {
-        helper = new KnowsTheDomain();
+    public AccountSteps(KnowsTheDomain helper) {
+        this.helper = helper;
     }
 
     public class MoneyConverter extends Transformer<Money> {

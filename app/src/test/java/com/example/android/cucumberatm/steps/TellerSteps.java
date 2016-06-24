@@ -11,8 +11,8 @@ import cucumber.api.java.en.When;
 public class TellerSteps {
     private final KnowsTheDomain helper;
 
-    public TellerSteps() {
-        helper = new KnowsTheDomain();
+    public TellerSteps(KnowsTheDomain helper) {
+        this.helper = helper;
     }
 
 

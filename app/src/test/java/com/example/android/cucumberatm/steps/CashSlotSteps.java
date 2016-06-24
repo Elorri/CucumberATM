@@ -20,8 +20,8 @@ public class CashSlotSteps {
     private final KnowsTheDomain helper;
 
 
-    public CashSlotSteps() {
-        helper = new KnowsTheDomain();
+    public CashSlotSteps(KnowsTheDomain helper) {
+        this.helper = helper;
     }
 
 
