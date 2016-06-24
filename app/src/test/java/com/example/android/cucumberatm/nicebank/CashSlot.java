@@ -4,7 +4,7 @@ package com.example.android.cucumberatm.nicebank;
  * Created by Elorri on 24/06/2016.
  */
 
-class CashSlot {
+public class CashSlot {
     private int contents;
     public int getContents() {
         return contents;

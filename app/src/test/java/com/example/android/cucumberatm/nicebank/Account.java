@@ -12,7 +12,7 @@ public class Account {
         balance = balance.add(amount);
     }
 
-    Money getBalance() {
+    public Money getBalance() {
         return balance;
     }
 }

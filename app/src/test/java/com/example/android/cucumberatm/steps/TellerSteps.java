@@ -1,6 +1,7 @@
 package com.example.android.cucumberatm.steps;
 
 import com.example.android.cucumberatm.support.KnowsTheDomain;
+import com.example.android.cucumberatm.nicebank.Account;
 
 import cucumber.api.java.en.When;
 

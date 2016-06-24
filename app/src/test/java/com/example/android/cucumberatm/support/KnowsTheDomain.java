@@ -1,6 +1,8 @@
 package com.example.android.cucumberatm.support;
 
-import android.accounts.Account;
+import com.example.android.cucumberatm.nicebank.Account;
+import com.example.android.cucumberatm.nicebank.CashSlot;
+import com.example.android.cucumberatm.nicebank.Teller;
 
 /**
  * Created by Elorri on 24/06/2016.
