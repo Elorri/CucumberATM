@@ -2,11 +2,9 @@ package com.example.android.cucumberatm.steps;
 
 import com.example.android.cucumberatm.nicebank.Money;
 import com.example.android.cucumberatm.support.KnowsTheDomain;
-import com.example.android.cucumberatm.nicebank.Account;
 
 import org.junit.Assert;
 
-import cucumber.api.PendingException;
 import cucumber.api.Transform;
 import cucumber.api.Transformer;
 import cucumber.api.java.en.Given;
@@ -36,16 +34,14 @@ public class AccountSteps {
         }
     }
 
-    @Given("^I have deposited (\\$\\d+\\.\\d+) in my account$")
-    public void iHaveDeposited$InMyAccount(@Transform(MoneyConverter.class) Money amount) throws Throwable {
-        helper.getMyAccount().deposit(amount);
-        Assert.assertEquals("Incorrect account balance -", amount, helper.getMyAccount().getBalance());
+    @Given("^my account has been credited with (\\$\\d+\\.\\d+)$")
+    public void myAccountHasBeenCreditedWith$(@Transform(MoneyConverter.class) Money amount) throws Throwable {
+        helper.getMyAccount().credit(amount);
     }
 
     @Then("^the balance of my account should be (\\$\\d+\\.\\d+)$")
     public void theBalanceOfMyAccountShouldBe$(@Transform(MoneyConverter.class) Money amount)
             throws Throwable {
-        Assert.assertEquals("Incorrect account balance -",
-                amount, helper.getMyAccount().getBalance());
+        Assert.assertEquals("Incorrect account balance -", amount, helper.getMyAccount().getBalance());
     }
 }

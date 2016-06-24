@@ -17,4 +17,10 @@ public class Money {
     public Money add(Money amount) {
         return null;
     }
+
+    public Money minus(Money money) {
+        return null;
+    }
+
+
 }
