@@ -2,6 +2,9 @@ package com.example.android.cucumberatm;
 
 import org.junit.Assert;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -28,6 +31,13 @@ public class Steps {
         }
     }
 
+    public Money(String amount) {
+        Pattern pattern = Pattern.compile("^[^\\d]*([\\d]+)\\.([\\d][\\d])$");
+        Matcher matcher = pattern.matcher(amount);
+        matcher.find();
+        this.dollars = Integer.parseInt(matcher.group(1));
+        this.cents = Integer.parseInt(matcher.group(2));
+    }
 
 
     @Given("^I have deposited \$(\\d+)\.(\\d+) in my account$")
