@@ -1,6 +1,6 @@
 package com.example.android.cucumberatm;
 
-import android.accounts.Account;
+import com.example.android.cucumberatm.support.KnowsTheDomain;
 
 import org.junit.Assert;
 

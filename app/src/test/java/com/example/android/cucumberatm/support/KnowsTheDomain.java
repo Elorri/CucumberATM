@@ -1,4 +1,4 @@
-package com.example.android.cucumberatm;
+package com.example.android.cucumberatm.support;
 
 import android.accounts.Account;
 
@@ -6,7 +6,7 @@ import android.accounts.Account;
  * Created by Elorri on 24/06/2016.
  */
 
-class KnowsTheDomain {
+public class KnowsTheDomain {
     private Account myAccount;
     private CashSlot cashSlot;
     private Teller teller;
