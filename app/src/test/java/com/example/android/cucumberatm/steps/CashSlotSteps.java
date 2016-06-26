@@ -1,6 +1,6 @@
 package com.example.android.cucumberatm.steps;
 
-import com.example.android.cucumberatm.support.KnowsTheCashSlot;
+import com.example.android.cucumberatm.nicebank.CashSlot;
 
 import org.junit.Assert;
 
@@ -12,16 +12,16 @@ import cucumber.api.java.en.Then;
 
 public class CashSlotSteps {
 
-    private final KnowsTheCashSlot helper;
+    CashSlot cashSlot;
 
 
-    public CashSlotSteps(KnowsTheCashSlot helper) {
-        this.helper = helper;
+    public CashSlotSteps(CashSlot cashSlot) {
+        this.cashSlot = cashSlot;
     }
 
 
     @Then("^\\$(\\d+) should be dispensed$")
     public void $ShouldBeDispensed(int dollars) throws Throwable {
-        Assert.assertEquals("Incorrect amount dispensed -", dollars, helper.getCashSlot().getContents());
+        Assert.assertEquals("Incorrect amount dispensed -", dollars, cashSlot.getContents());
     }
 }
