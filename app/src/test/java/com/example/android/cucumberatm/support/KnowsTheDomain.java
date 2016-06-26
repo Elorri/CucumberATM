@@ -3,6 +3,8 @@ package com.example.android.cucumberatm.support;
 import com.example.android.cucumberatm.nicebank.Account;
 import com.example.android.cucumberatm.nicebank.AtmUserInterface;
 import com.example.android.cucumberatm.nicebank.CashSlot;
+import com.example.android.cucumberatm.nicebank.EventFiringWebDriver;
+import com.example.android.cucumberatm.nicebank.FirefoxDriver;
 import com.example.android.cucumberatm.nicebank.Teller;
 
 /**
@@ -13,6 +15,7 @@ public class KnowsTheDomain {
     private Account myAccount;
     private CashSlot cashSlot;
     private Teller teller;
+    private EventFiringWebDriver webDriver;
 
     public Account getMyAccount() {
         if (myAccount == null){
@@ -32,6 +35,13 @@ public class KnowsTheDomain {
             teller = new AtmUserInterface();
         }
         return teller;
+    }
+
+    public EventFiringWebDriver getWebDriver() {
+        if (webDriver == null){
+            webDriver = new EventFiringWebDriver(new FirefoxDriver());
+        }
+        return webDriver;
     }
 
 }
