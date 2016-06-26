@@ -1,6 +1,7 @@
 package com.example.android.cucumberatm.support;
 
 import com.example.android.cucumberatm.nicebank.Account;
+import com.example.android.cucumberatm.nicebank.AtmUserInterface;
 import com.example.android.cucumberatm.nicebank.CashSlot;
 import com.example.android.cucumberatm.nicebank.Teller;
 
@@ -28,7 +29,7 @@ public class KnowsTheDomain {
 
     public Teller getTeller() {
         if (teller == null){
-            teller = new Teller(getCashSlot());
+            teller = new AtmUserInterface();
         }
         return teller;
     }
