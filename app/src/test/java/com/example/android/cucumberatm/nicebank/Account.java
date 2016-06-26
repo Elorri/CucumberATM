@@ -5,19 +5,15 @@ package com.example.android.cucumberatm.nicebank;
  */
 
 public class Account {
-
-    private Money balance;
-
-
+    private TransactionQueue queue = new TransactionQueue();
     public void credit(Money amount) {
-        balance = balance.add(amount);
+        queue.write("+" + amount.toString());
     }
-
-    public Money getBalance() {
-        return balance;
-    }
-
     public void debit(int dollars) {
-        balance = balance.minus(new Money(dollars, 0));
+        Money amount = new Money(dollars, 0);
+        queue.write("-" + amount.toString());
+    }
+    public Money getBalance() {
+        return BalanceStore.getBalance();
     }
 }
