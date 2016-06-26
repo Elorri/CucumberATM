@@ -17,12 +17,24 @@ public class KnowsTheDomain {
     private Teller teller;
     private EventFiringWebDriver webDriver;
 
+    public KnowsTheDomain() {
+        if (!Base.hasConnection()){
+            Base.open(
+                    "com.mysql.jdbc.Driver",
+                    "jdbc:mysql://localhost/bank",
+                    "teller", "password");
+        }
+        Account.deleteAll();
+    }
+
     public Account getMyAccount() {
         if (myAccount == null){
-            myAccount = new Account();
+            myAccount = new Account(1234);
         }
         return myAccount;
     }
+
+
     public CashSlot getCashSlot() {
         if (cashSlot == null){
             cashSlot = new CashSlot();
