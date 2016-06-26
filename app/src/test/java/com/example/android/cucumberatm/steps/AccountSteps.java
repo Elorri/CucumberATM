@@ -1,7 +1,7 @@
 package com.example.android.cucumberatm.steps;
 
 import com.example.android.cucumberatm.nicebank.Money;
-import com.example.android.cucumberatm.support.KnowsTheDomain;
+import com.example.android.cucumberatm.support.KnowsTheAccount;
 
 import org.junit.Assert;
 
@@ -16,9 +16,9 @@ import cucumber.api.java.en.Then;
 
 public class AccountSteps {
 
-    private final KnowsTheDomain helper;
+    private final KnowsTheAccount helper;
 
-    public AccountSteps(KnowsTheDomain helper) {
+    public AccountSteps(KnowsTheAccount helper) {
         this.helper = helper;
     }
 

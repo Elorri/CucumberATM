@@ -1,7 +1,7 @@
 package com.example.android.cucumberatm.steps;
 
-import com.example.android.cucumberatm.support.KnowsTheDomain;
-import com.example.android.cucumberatm.nicebank.Account;
+import com.example.android.cucumberatm.support.KnowsTheAccount;
+import com.example.android.cucumberatm.support.KnowsTheTeller;
 
 import cucumber.api.java.en.When;
 
@@ -10,15 +10,17 @@ import cucumber.api.java.en.When;
  */
 
 public class TellerSteps {
-    private final KnowsTheDomain helper;
+    private final KnowsTheTeller tellerHelper;
+    private final KnowsTheAccount accountHelper;
 
-    public TellerSteps(KnowsTheDomain helper) {
-        this.helper = helper;
+    public TellerSteps(KnowsTheTeller tellerHelper, KnowsTheAccount accountHelper) {
+        this.tellerHelper = tellerHelper;
+        this.accountHelper=accountHelper;
     }
 
 
     @When("^I withdraw \\$(\\d+)$")
     public void iWithdraw$(int dollars) throws Throwable {
-        helper.getTeller().withdrawFrom(helper.getMyAccount(), dollars);
+        tellerHelper.getTeller().withdrawFrom(accountHelper.getMyAccount(), dollars);
     }
 }
