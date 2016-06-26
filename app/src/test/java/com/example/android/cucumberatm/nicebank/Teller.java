@@ -6,4 +6,5 @@ package com.example.android.cucumberatm.nicebank;
 
 public interface Teller {
     void withdrawFrom(Account account, int dollars);
+    boolean isDisplaying(String message);
 }

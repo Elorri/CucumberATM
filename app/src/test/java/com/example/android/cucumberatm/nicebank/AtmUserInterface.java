@@ -10,7 +10,7 @@ import com.example.android.cucumberatm.hooks.ServerHooks;
  * This class would need nespresso dependencies
  */
 
-public class AtmUserInterface  implements Teller {
+public class AtmUserInterface implements Teller {
 
 
     @Override
@@ -24,5 +24,12 @@ public class AtmUserInterface  implements Teller {
 
         //click the withdraw button
         webDriver.findElement(By.id("Withdraw")).click();
+    }
+
+    @Override
+    public boolean isDisplaying(String message) {
+        List<WebElement> list = webDriver
+                .findElements(By.xpath("//*[contains(text(),'" + message + "')]"));
+        return (list.size() > 0);
     }
 }

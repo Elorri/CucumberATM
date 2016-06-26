@@ -4,6 +4,7 @@ import com.example.android.cucumberatm.nicebank.CashSlot;
 
 import org.junit.Assert;
 
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
 /**
@@ -23,5 +24,10 @@ public class CashSlotSteps {
     @Then("^\\$(\\d+) should be dispensed$")
     public void $ShouldBeDispensed(int dollars) throws Throwable {
         Assert.assertEquals("Incorrect amount dispensed -", dollars, cashSlot.getContents());
+    }
+
+    @Given("^the cash slot has developed a fault$")
+    public void theCashSlotHasDevelopedAFault() throws Throwable {
+        cashSlot.injectFault();
     }
 }
